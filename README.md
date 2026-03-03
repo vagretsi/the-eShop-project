@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# THE ULTIMATE STORE
+
+A modern e-commerce web application built with **Next.js**, **React 19**, **TypeScript**, **Zustand**, and **PostgreSQL** via Prisma ORM.
+
+---
+
+## Features
+
+- **Product Browsing** — Responsive product grid with data fetched from FakeStoreAPI
+- **Shopping Cart** — Animated slide-in sidebar cart powered by Framer Motion
+- **Cart State Management** — Client-side Zustand store with add, remove, and quantity controls
+- **Admin Panel** — Protected page to add new products directly to the database
+- **HTTP Basic Auth** — Middleware-based authentication guarding the `/admin` route
+- **Dark Mode** — Full light/dark theme support via CSS variables and Tailwind
+- **PostgreSQL Integration** — Prisma ORM for persisting admin-created products
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| UI Library | React 19 |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| State Management | Zustand |
+| Database | PostgreSQL |
+| ORM | Prisma |
+| Auth | HTTP Basic Auth (Middleware) |
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Home page — product grid
+│   ├── layout.tsx            # Root layout
+│   ├── admin/
+│   │   └── page.tsx          # Admin panel — add products
+│   └── api/
+│       └── products/
+│           └── route.ts      # POST /api/products — create product
+├── components/
+│   ├── NavBar.tsx            # Sticky navbar with cart toggle
+│   ├── ProductCard.tsx       # Individual product card
+│   └── CartSidebar.tsx       # Animated cart sidebar
+├── store/
+│   └── useCart.ts            # Zustand cart store
+├── types/
+│   └── product.ts            # Product TypeScript interface
+└── middleware.ts             # Admin route authentication
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database
+
+### 1. Clone the repository
+
+```bash
+git clone <repo-url>
+cd the-eShop-project
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Set up environment variables
+
+Create a `.env` file in the project root:
+
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/eshop"
+ADMIN_USER=your_admin_username
+ADMIN_PASSWORD=your_admin_password
+```
+
+### 4. Set up the database
+
+```bash
+npx prisma migrate dev
+```
+
+### 5. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Admin Panel
 
-## Learn More
+The admin panel is available at [http://localhost:3000/admin](http://localhost:3000/admin).
 
-To learn more about Next.js, take a look at the following resources:
+Access is protected by HTTP Basic Authentication. Use the credentials defined in your `.env` file (`ADMIN_USER` / `ADMIN_PASSWORD`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+From the admin panel you can add new products with:
+- Title
+- Price
+- Description
+- Category
+- Image URL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Products are saved to the PostgreSQL database via the `POST /api/products` endpoint.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+
+---
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `ADMIN_USER` | Admin panel username |
+| `ADMIN_PASSWORD` | Admin panel password |
