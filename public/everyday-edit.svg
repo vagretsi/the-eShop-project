@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1050" viewBox="0 0 1000 1050">
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e7e5dc"/><stop offset="1" stop-color="#c8cabc"/></linearGradient>
+<linearGradient id="bag" x2="1" y2=".5"><stop stop-color="#4c5840"/><stop offset=".45" stop-color="#758066"/><stop offset="1" stop-color="#49543d"/></linearGradient>
+<linearGradient id="side"><stop stop-color="#333f2f"/><stop offset="1" stop-color="#58664b"/></linearGradient>
+<linearGradient id="clay" x2="1" y2="1"><stop stop-color="#d59674"/><stop offset="1" stop-color="#9a5b42"/></linearGradient>
+<linearGradient id="ear"><stop stop-color="#e6e1d4"/><stop offset=".5" stop-color="#f8f4e8"/><stop offset="1" stop-color="#c0bdaf"/></linearGradient>
+<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".045"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+</defs>
+<path fill="url(#bg)" d="M0 0h1000v1050H0z"/>
+<circle cx="940" cy="200" r="390" fill="#f7f3e6" opacity=".4"/>
+<path d="M0 820 1000 620v430H0" fill="#d7d5c9"/>
+<ellipse cx="464" cy="825" rx="300" ry="50" fill="#343e2c" opacity=".23" filter="url(#shadow)"/>
+<path d="M672 711h328v339H672z" fill="url(#clay)"/><path d="m672 711 111-52h217v52" fill="#dda58b"/>
+<g transform="rotate(-9 455 550)" filter="url(#grain)">
+<path d="M255 351 624 360l58 427q-231 73-443-6Z" fill="url(#bag)"/>
+<path d="m624 360 39-27 66 410-47 44" fill="url(#side)"/>
+<path d="m255 351 46-21 362 3-39 27" fill="#424d36"/>
+<path d="M335 379V254c0-143 216-143 216 0v129" fill="none" stroke="#3c4834" stroke-width="35"/>
+<path d="M335 379V254c0-143 216-143 216 0v129" fill="none" stroke="#748164" stroke-width="24"/>
+<path d="M341 379V257c0-131 204-131 204 0v123" fill="none" stroke="#a5ac91" stroke-width="1.5" opacity=".7"/>
+<path d="m274 369-12 395q211 55 396 4l-49-389" fill="none" stroke="#a3ad8b" stroke-width="2" opacity=".4"/>
+<path d="m294 402 22 335M594 407l-4 327" fill="none" stroke="#2c3726" stroke-width="6" opacity=".12"/>
+<text x="456" y="586" text-anchor="middle" fill="#e8e4cc" font-family="Arial,sans-serif" font-weight="bold" font-size="24" letter-spacing="6">EVERYDAY</text>
+<text x="456" y="615" text-anchor="middle" fill="#d1d3bb" font-family="Arial,sans-serif" font-size="11" letter-spacing="4">MAKE IT YOUR OWN</text>
+</g>
+<ellipse cx="793" cy="766" rx="142" ry="24" fill="#613c2b" opacity=".3" filter="url(#shadow)"/>
+<g transform="rotate(17 790 635)">
+<path d="M686 657v-94c0-144 202-144 202 0v94" fill="none" stroke="#a8a89e" stroke-width="30"/>
+<path d="M686 650v-87c0-144 202-144 202 0v87" fill="none" stroke="#ede9df" stroke-width="22"/>
+<rect x="662" y="603" width="65" height="133" rx="31" fill="#b3b3a9"/><rect x="650" y="599" width="57" height="134" rx="28" fill="url(#ear)"/>
+<rect x="850" y="603" width="65" height="133" rx="31" fill="#b3b3a9"/><rect x="865" y="599" width="57" height="134" rx="28" fill="url(#ear)"/>
+</g>
+<path d="M92 930h105" stroke="#555e4a" stroke-width="1"/><circle cx="219" cy="930" r="5" fill="#555e4a"/>
+</svg>

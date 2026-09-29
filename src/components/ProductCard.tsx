@@ -1,32 +1,21 @@
-"use client"; // Ενεργοποιεί το interactivity
+"use client";
+import { useState } from "react";
 import { Product } from "@/types/product";
 import { useCart } from "@/store/useCart";
+import Image from "next/image";
+import Icon from "./Icon";
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product, index }: { product: Product; index: number }) {
   const addToCart = useCart((state) => state.addToCart);
-
-  return (
-    <div className="flex flex-col bg-white border border-zinc-200 rounded-3xl p-5 transition-all hover:shadow-2xl dark:bg-zinc-900 dark:border-zinc-800">
-      <div className="relative aspect-square mb-5 bg-white rounded-2xl overflow-hidden p-4">
-        <img 
-          src={product.image} 
-          alt={product.title} 
-          className="h-full w-full object-contain hover:scale-110 transition-transform duration-500" 
-        />
-      </div>
-      <h3 className="font-bold text-sm line-clamp-1 h-5 text-black dark:text-white">{product.title}</h3>
-      <div className="mt-5 flex items-center justify-between">
-        <span className="text-xl font-black text-black dark:text-white">${product.price}</span>
-        <button 
-          onClick={() => {
-            console.log("Adding to cart:", product.title); // Για να το βλέπεις στο Console
-            addToCart(product);
-          }}
-          className="bg-black text-white px-6 py-2.5 rounded-full text-[10px] font-black active:scale-90 transition-all dark:bg-white dark:text-black hover:opacity-80"
-        >
-          ADD TO CART
-        </button>
-      </div>
+  const [failed, setFailed] = useState(false);
+  return <article className="product-card">
+    <div className="product-image">
+      {index < 2 && <span className="product-badge">{index === 0 ? "The everyday pick" : "Worth a closer look"}</span>}
+      {failed ? <div className="image-placeholder"><Icon name="bag" size={48} /><span>Image unavailable</span></div> : <Image unoptimized width={300} height={300} src={product.image} alt={product.title} loading="lazy" onError={() => setFailed(true)} />}
+      <button className="quick-add" aria-label={`Add ${product.title} to bag`} onClick={() => addToCart(product)}><Icon name="plus" /></button>
     </div>
-  );
+    <div className="product-meta"><span>{product.category || "Everyday essentials"}</span>{product.rating && <span className="rating"><span aria-hidden="true">★</span> {product.rating.rate.toFixed(1)}</span>}</div>
+    <h3 title={product.title}>{product.title}</h3>
+    <div className="product-bottom"><span>${product.price.toFixed(2)}</span><button onClick={() => addToCart(product)}>Add to bag <Icon name="arrow" size={15} /></button></div>
+  </article>;
 }

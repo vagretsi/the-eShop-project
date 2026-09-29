@@ -1,27 +1,19 @@
 "use client";
 import { useCart } from "@/store/useCart";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import Icon from "./Icon";
 
 export default function NavBar() {
   const { cart, toggleCart } = useCart();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  // Υπολογίζουμε το σύνολο των τεμαχίων (π.χ. 2 t-shirts + 1 hat = 3 items)
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b p-4 dark:bg-black/80 dark:border-zinc-800">
-      <div className="max-w-7xl mx-auto flex justify-between items-center text-black dark:text-white">
-        <span className="font-black text-2xl tracking-tighter italic">THE ULTIMATE STORE</span>
-        <button 
-          onClick={toggleCart}
-          className="bg-black text-white px-6 py-2 rounded-full text-xs font-bold active:scale-95 transition-all dark:bg-white dark:text-black shadow-lg"
-        >
-          CART ({mounted ? totalItems : 0})
-        </button>
-      </div>
-    </nav>
-  );
+  return <>
+    <div className="announcement">A little less ordinary. A little more you. <span>Discover your next everyday favorite <span aria-hidden="true">↗</span></span></div>
+    <header className="site-header">
+      <nav className="nav-inner" aria-label="Main navigation">
+        <Link href="/" className="wordmark" aria-label="The Ultimate Store home">the ultimate<span>store<span className="brand-dot">.</span></span></Link>
+        <div className="nav-links"><a className="active" href="#collection">Shop all</a><a href="#edit">The everyday edit</a><a href="#about">Our approach</a></div>
+        <button className="cart-toggle" onClick={toggleCart} aria-label={`Open shopping bag, ${totalItems} items`}><Icon name="bag" /><span>Bag</span><span className="cart-count">{totalItems}</span></button>
+      </nav>
+    </header>
+  </>;
 }
